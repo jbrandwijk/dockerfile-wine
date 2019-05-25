@@ -1,4 +1,5 @@
-FROM 	debian:stable-slim
+#FROM	debian:stable-slim
+FROM	pyromanic/debian-s6
 RUN	dpkg --add-architecture i386
 RUN 	apt-get update && 	\
 	apt-get install 	\
@@ -12,5 +13,7 @@ RUN 	apt-get update && 	\
 RUN	useradd user
 RUN	mkdir /home/user
 RUN	chown user /home/user
+RUN	echo "user	ALL=(ALL)NOPASSWD:ALL " >> /etc/sudoers
+RUN	echo "" >> /etc/sudoers
 USER	user
-CMD /bin/bash
+CMD 	wine cmd
